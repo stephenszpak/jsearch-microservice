@@ -22,7 +22,9 @@ config :job_hunt, JobHuntWeb.Router,
 config :job_hunt, JobHunt.Scheduler,
   timezone: "Etc/UTC"
 
-import_config "releases.exs"
+if config_env() == :prod do
+  import_config "releases.exs"
+end
 
 config :job_hunt, JobHunt.Scheduler,
   jobs: [
