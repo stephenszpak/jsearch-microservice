@@ -36,7 +36,8 @@ defmodule JobHunt.MixProject do
       {:quantum, "~> 3.0"},
       {:logger_json, "~> 5.0"},
       {:prom_ex, "~> 1.9"},
-      {:mox, "~> 1.0", only: :test}
+      {:mox, "~> 1.0", only: :test},
+      {:dotenvy, "~> 0.8"}
     ]
   end
 end

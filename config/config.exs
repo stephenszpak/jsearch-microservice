@@ -1,5 +1,10 @@
 import Config
 
+# Load environment variables from .env when present
+if File.exists?(Path.expand("../.env", __DIR__)) do
+  Dotenvy.load()
+end
+
 config :job_hunt, ecto_repos: [JobHunt.Repo]
 
 config :job_hunt, JobHunt.Repo,
