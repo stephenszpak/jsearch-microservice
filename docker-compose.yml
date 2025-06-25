@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${DB_NAME:-job_hunt_dev}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASS:-postgres}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  app:
+    build: .
+    environment:
+      DB_NAME: ${DB_NAME:-job_hunt_dev}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASS: ${DB_PASS:-postgres}
+      DB_HOST: db
+      PORT: ${PORT:-4000}
+      LINKEDIN_COOKIE: ${LINKEDIN_COOKIE}
+      GLASSDOOR_COOKIE: ${GLASSDOOR_COOKIE}
+    depends_on:
+      - db
+    ports:
+      - '4000:4000'
+
+volumes:
+  db_data:
