@@ -3,7 +3,8 @@ defmodule JobHunt.Sources.GitHubTest do
 
   alias JobHunt.Sources.GitHub
 
-  test "fetch returns empty list" do
-    assert [] = GitHub.fetch(%{})
+  test "fetch returns a matching job" do
+    [%{title: title}] = GitHub.fetch(%{keyword: "elixir"})
+    assert String.contains?(String.downcase(title), "elixir")
   end
 end

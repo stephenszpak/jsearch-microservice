@@ -22,7 +22,7 @@ defmodule JobHunt.Aggregator do
         _ -> []
       end
     end)
-    |> filter(query)
+      |> filter(query)
   end
 
   def filter(raw_jobs, query) do
@@ -53,15 +53,16 @@ defmodule JobHunt.Aggregator do
 
   defp meets_constraints?(job, query) do
     salary_ok?(job.salary) and
-      remote_or_within_radius?(job.remote, job.location) and
+      remote_or_within_radius?(job.remote, job.location, query[:remote_only]) and
       keyword_ok?(job.title, query[:keyword])
   end
 
   defp salary_ok?(salary), do: salary && salary >= 110_000
 
-  defp remote_or_within_radius?(true, _loc), do: true
-  defp remote_or_within_radius?(_, nil), do: false
-  defp remote_or_within_radius?(_, _loc), do: true
+  defp remote_or_within_radius?(true, _loc, _remote_only), do: true
+  defp remote_or_within_radius?(_, _loc, true), do: false
+  defp remote_or_within_radius?(_, nil, _), do: false
+  defp remote_or_within_radius?(_, _loc, _), do: true
 
   defp keyword_ok?(title, nil), do: keyword_ok?(title, "")
   defp keyword_ok?(title, kw) do
