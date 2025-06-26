@@ -17,7 +17,8 @@ config :job_hunt, JobHunt.Repo,
 config :logger, backends: [LoggerJSON]
 
 config :job_hunt, JobHuntWeb.Router,
-  port: String.to_integer(System.get_env("PORT", "4000"))
+  port: String.to_integer(System.get_env("PORT", "4000")),
+  read_timeout: String.to_integer(System.get_env("BANDIT_READ_TIMEOUT", "120000"))
 
 config :job_hunt, JobHunt.Scheduler,
   timezone: "Etc/UTC"
