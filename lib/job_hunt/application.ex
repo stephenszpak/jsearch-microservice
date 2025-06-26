@@ -11,7 +11,11 @@ defmodule JobHunt.Application do
       {JobHunt.Worker, :indeed},
       {JobHunt.Worker, :glassdoor},
       {JobHunt.Worker, :github},
-      {Bandit, plug: JobHuntWeb.Router, scheme: :http, port: Application.get_env(:job_hunt, JobHuntWeb.Router)[:port]},
+      {Bandit,
+       plug: JobHuntWeb.Router,
+       scheme: :http,
+       port: Application.get_env(:job_hunt, JobHuntWeb.Router)[:port],
+       transport_options: [read_timeout: Application.get_env(:job_hunt, JobHuntWeb.Router)[:read_timeout]]},
       JobHunt.Scheduler
     ]
 
