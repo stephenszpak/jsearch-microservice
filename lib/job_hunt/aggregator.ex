@@ -4,11 +4,7 @@ defmodule JobHunt.Aggregator do
   """
 
   @behaviour JobHunt.Sources
-  alias JobHunt.Sources
-
   @keywords ["Web Developer", "Software Engineer", "Elixir", "Ruby", "React", "Angular", "JavaScript", "CSS", "GitHub", "AI"]
-  @nashville {36.1627, -86.7816}
-  @radius_mi 50
 
   @sources [
     JobHunt.Sources.LinkedIn,
