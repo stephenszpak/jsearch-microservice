@@ -1,6 +1,6 @@
 defmodule JobHuntWeb.Router do
   use Plug.Router
-  use PromEx.Plug, prom_ex_module: JobHunt.PromEx
+  plug PromEx.Plug, prom_ex_module: JobHunt.PromEx
 
   plug :match
   plug :dispatch
