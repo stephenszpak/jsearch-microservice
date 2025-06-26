@@ -16,6 +16,9 @@ RUN MIX_ENV=prod mix release
 
 FROM alpine:3.18 AS app
 WORKDIR /app
-RUN apk add --no-cache bash openssl ncurses-libs
+# The Erlang runtime shipped in the release requires libgcc and libstdc++
+# which are not part of a minimal Alpine image. Install them alongside
+# other runtime dependencies so the application can start successfully.
+RUN apk add --no-cache bash openssl ncurses-libs libstdc++ libgcc
 COPY --from=build /app/_build/prod/rel/job_hunt ./
 CMD ["./bin/job_hunt", "start"]
