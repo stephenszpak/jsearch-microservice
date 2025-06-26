@@ -2,6 +2,17 @@ defmodule JobHunt.Worker do
   use GenServer
   require Logger
 
+  @impl true
+  def child_spec(source) do
+    %{
+      id: {__MODULE__, source},
+      start: {__MODULE__, :start_link, [source]},
+      restart: :permanent,
+      shutdown: 500,
+      type: :worker
+    }
+  end
+
   alias JobHunt.Aggregator
   alias JobHunt.Repo
   alias JobHunt.Jobs.Job
