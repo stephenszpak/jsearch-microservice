@@ -31,7 +31,7 @@ defmodule JobHunt.MixProject do
       {:broadway, "~> 1.0"},
       {:ecto_sql, "~> 3.11"},
       {:postgrex, ">= 0.0.0"},
-      {:bandit, "~> 0.8"},
+      {:bandit, "~> 1.0"},
       {:jason, "~> 1.4"},
       {:quantum, "~> 3.0"},
       {:logger_json, "~> 5.0"},
