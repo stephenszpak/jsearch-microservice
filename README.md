@@ -33,10 +33,10 @@ using the [Dotenvy](https://hex.pm/packages/dotenvy) library.
 
 Open `.env` in your favourite editor and review the settings. By default the database credentials match the ones used by the `docker-compose.yml` file. You may also want to provide any authentication cookies for the job sites you intend to scrape.
 
-The `COWBOY_READ_TIMEOUT` variable controls how long the server waits for
-clients to send HTTP headers. If your clients connect slowly you can increase
-this value (in milliseconds) to avoid timeouts. The `.env.example` file sets it
-to `120000` (two minutes).
+The `COWBOY_READ_TIMEOUT` variable controls the Cowboy `request_timeout`
+(in milliseconds). It determines how long the server waits for clients to send
+HTTP headers. If your clients connect slowly you can increase this value to
+avoid timeouts. The `.env.example` file sets it to `120000` (two minutes).
 
 ## Starting the containers
 

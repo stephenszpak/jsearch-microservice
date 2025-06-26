@@ -16,7 +16,10 @@ defmodule JobHunt.Application do
        plug: JobHuntWeb.Router,
        options: [
          port: Application.get_env(:job_hunt, JobHuntWeb.Router)[:port],
-         read_timeout: Application.get_env(:job_hunt, JobHuntWeb.Router)[:read_timeout]
+         protocol_options: [
+           request_timeout:
+             Application.get_env(:job_hunt, JobHuntWeb.Router)[:read_timeout]
+         ]
        ]},
       JobHunt.Scheduler
     ]
